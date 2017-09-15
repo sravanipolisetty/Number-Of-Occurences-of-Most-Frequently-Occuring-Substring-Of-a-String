@@ -1,0 +1,53 @@
+package hackersrank;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+class Solution2
+{
+   public static void main(String args[])
+   {
+      String string, sub;
+      int i, c, length;
+      int maxOccurence=0;
+      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      Scanner in = new Scanner(System.in);
+      System.out.println("Enter a string to print it's all substrings");
+      string  = in.nextLine(); 
+      length = string.length();   
+      System.out.println("Substrings of \""+string+"\" are :-");
+      for( c = 0 ; c < length ; c++ )
+      {
+         for( i = 1 ; i <= length - c ; i++ )     	 
+         {
+            sub = string.substring(c, c+i);
+            if(sub.length()<=4 && sub.length()>=2)
+            {
+            	 System.out.println(sub);
+            	 //map.put(sub,count);
+            	 Integer temp= map.get(sub);
+            	 if(temp == null){
+            		 temp=0;
+            	 }           	 
+            	 map.put(sub,temp+1);            	 
+            }           
+         }
+      }
+   
+      System.out.println("Iteration");
+      // Iterating through Hashmap
+      for(String word : map.keySet()){
+    	  
+ 		 int co = map.get(word);
+ 		 if(co>maxOccurence)
+ 		    maxOccurence=co;
+ 		 
+ 		 System.out.println(word + ":"+co);
+ 	 }
+    System.out.println("maxoccurence is " + maxOccurence);
+      
+   }
+   
+}
